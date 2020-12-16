@@ -7,6 +7,7 @@ import Container from './components/Container/Container.jsx';
 //import Menu from './components/Menu';
 import List from './components/List/List.jsx';
 import Counter from './components/Counter/Counter.jsx';
+import CommentForm from './components/CommentForm/CommentForm.jsx';
 
 const items = [
 	{href: '/', title: 'Home'},
@@ -21,16 +22,40 @@ const items1 = [
 ]
 
 class App extends Component{
+	constructor(props){
+		super(props);
+		
+		this.state = {
+			comments: []
+		}
+		
+	}
+	
+	handleComment = (comment) => {
+		this.setState((prevState) => ({
+			...prevState,
+			comments: prevState.comments.concat([comment]),
+		}))
+		console.log(comment);
+	}
+	
 	render(){
+		const {comments} = this.state;
+		
 		return(
 			<div className = "box">
 				<Container>
 					<Menu items = {items} title = "Main menu" />
 					<Menu items = {items1} title = "Another menu" />
 					Hello world!
-					<Menu items = {items1} title = {1} />
+					<Menu items = {items1} title = "hi hi" />
 					<List items = {['MongoDB', 'MiSQL', 'RethinkDB']} />
-					<Counter />				
+					<Counter /><br/>
+					<ul>
+						{comments.map((comment, idx) => <li key = {idx}>{comment.author}: {comment.message}</li>)}
+					</ul>
+					
+					<CommentForm onSend = {this.handleComment}/>
 				</Container>
 			</div>			
 		)

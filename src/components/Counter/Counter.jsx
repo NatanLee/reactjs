@@ -12,11 +12,11 @@ export default class Counter extends Component{
 			this.handleMinusClick = handleMinusClick.bind(this);*/
 		}
 	
-	handleMinusClick = (e) => {
+	/* handleMinusClick = (e) => {
 		
 		//1 вариант вызова setState
-	/* 	const {counter} = this.state;
-		this.setState({counter: counter - 1}); */
+	 	const {counter} = this.state;
+		this.setState({counter: counter - 1}); 
 		
 		this.setState((prevState) => ({
 			...prevState,
@@ -28,15 +28,16 @@ export default class Counter extends Component{
 		
 		//this.state.counter = this.state.counter - 1;
 		//this.forceUpdate();//принудительная перерисовка
-	}	
+	}	 */
 	
 /* 	handleMinusClick = (e) => {
 		this.state = this.state - 1; 
 	} */
-	handlePlusClick = (e) => {
+	handleClick = (e) => {
+		const addition = event.target.name === 'minus' ? -1 : 1
 		this.setState((prevState) => ({
 			...prevState,
-			counter: prevState.counter + 1		
+			counter: prevState.counter + addition		
 		}));
 	}
 	
@@ -45,9 +46,9 @@ export default class Counter extends Component{
 		const {counter} = this.state;		
 		return(
 			<Fragment>
-				<button onClick = {this.handleMinusClick}>-</button>
+				<button name = "minus" onClick = {this.handleClick}>-</button>
 				{counter}
-				<button onClick = {this.handlePlusClick}>+</button>
+				<button name = "plus" onClick = {this.handleClick}>+</button>
 			</Fragment>
 		)
 	}
