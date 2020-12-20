@@ -15,14 +15,15 @@ export default class CommentForm extends Component{
 		onSend: PropTypes.func,
 	}
 	
-	handleChange = (e) => {
+	handleChange = (event) => {
 		this.setState({
-			[event.target.name]: event.target.value
+			[event.target.name]: event.target.value  
 		});
 	}
 	
 	handleClick = () => {
 		const {onSend} = this.props;
+		this.setState({message: ''});
 		if(typeof onSend === 'function'){
 			onSend(this.state);
 		}
@@ -30,6 +31,7 @@ export default class CommentForm extends Component{
 	
 	render(){
 		const {author, message} = this.state;
+//		console.log({author, message});
 		return(
 			<Fragment>
 				<input onChange = {this.handleChange} name = "author" value = {author} type="text" /><br/>

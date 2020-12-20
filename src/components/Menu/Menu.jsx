@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 //import ReactDom from 'react-dom';
 
-//statefull предпологаетя поведение элемента
+//statefull предпологается поведение элемента
 export default class Menu extends Component{
 	render(){
 		const {title, items} = this.props;
@@ -12,8 +12,7 @@ export default class Menu extends Component{
 			<Fragment>
 				<h3>{title}</h3>
 				<ul className = "menu">
-					{items.map(((item, idx) => <li key = {idx}><a href = "{item.href}">{item.title}</a></li>))}
-					
+					{items.map(((item, idx) => <li key = {idx}><a href = "{item.href}">{item.title}</a></li>))}					
 					<li><a href = "/">Home</a></li>
 					<li><a href = "/news">News</a></li>
 					<li><a href = "/blog">Blog</a></li>				

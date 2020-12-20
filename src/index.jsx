@@ -27,8 +27,7 @@ class App extends Component{
 		
 		this.state = {
 			comments: []
-		}
-		
+		}		
 	}
 	
 	handleComment = (comment) => {
@@ -36,11 +35,12 @@ class App extends Component{
 			...prevState,
 			comments: prevState.comments.concat([comment]),
 		}))
-		console.log(comment);
+//		console.log(comment);
 	}
 	
 	render(){
 		const {comments} = this.state;
+//		console.log(comments);
 		
 		return(
 			<div className = "box">

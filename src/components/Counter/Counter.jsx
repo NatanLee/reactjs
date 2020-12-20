@@ -33,11 +33,11 @@ export default class Counter extends Component{
 /* 	handleMinusClick = (e) => {
 		this.state = this.state - 1; 
 	} */
-	handleClick = (e) => {
-		const addition = event.target.name === 'minus' ? -1 : 1
+	handleClick = (event) => {
+		const addition = event.target.name === 'minus' ? -1 : 1;
 		this.setState((prevState) => ({
 			...prevState,
-			counter: prevState.counter + addition		
+			counter: prevState.counter + addition
 		}));
 	}
 	
