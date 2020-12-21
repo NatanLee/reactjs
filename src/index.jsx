@@ -8,6 +8,7 @@ import Container from './components/Container/Container.jsx';
 import List from './components/List/List.jsx';
 import Counter from './components/Counter/Counter.jsx';
 import CommentForm from './components/CommentForm/CommentForm.jsx';
+import Timer from './components/Timer/Timer.jsx';
 
 const items = [
 	{href: '/', title: 'Home'},
@@ -26,7 +27,8 @@ class App extends Component{
 		super(props);
 		
 		this.state = {
-			comments: []
+			comments: [],
+			isModal: false
 		}		
 	}
 	
@@ -37,9 +39,12 @@ class App extends Component{
 		}))
 //		console.log(comment);
 	}
-	
+	hundleOpen = () => {
+		this.setState({isModal: !this.state.isModal});		
+	}
+		
 	render(){
-		const {comments} = this.state;
+		const {comments, isModal} = this.state;
 //		console.log(comments);
 		
 		return(
@@ -55,8 +60,11 @@ class App extends Component{
 						{comments.map((comment, idx) => <li key = {idx}>{comment.author}: {comment.message}</li>)}
 					</ul>
 					
-					<CommentForm onSend = {this.handleComment}/>
+					<CommentForm onSend = {this.handleComment}/><br/>
+					{isModal && <div>Modal</div>}
+					<button onClick={this.hundleOpen}>Open Modal</button>
 				</Container>
+				{isModal && <Timer />}
 			</div>			
 		)
 	}	
