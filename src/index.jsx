@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import ReactDom from 'react-dom';
 //прямой импорт
-import Menu from './components/Menu/Menu.jsx';
+import Menu from 'components/Menu/Menu.jsx';
 import Container from './components/Container/Container.jsx';
 //импорт через файл import.js
 //import Menu from './components/Menu';
-import List from './components/List/List.jsx';
+import List from 'components/List/List.jsx';
 import Counter from './components/Counter/Counter.jsx';
-import CommentForm from './components/CommentForm/CommentForm.jsx';
-import Timer from './components/Timer/Timer.jsx';
+import CommentForm from 'components/CommentForm/CommentForm.jsx';
+import Timer from 'components/Timer/Timer.jsx';
+import CommentsContainer from 'containers/CommentsContainer.jsx';
 
 const items = [
 	{href: '/', title: 'Home'},
@@ -65,6 +66,7 @@ class App extends Component{
 					<button onClick={this.hundleOpen}>Open Modal</button>
 				</Container>
 				{isModal && <Timer />}
+				<CommentsContainer />
 			</div>			
 		)
 	}	

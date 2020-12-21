@@ -17,7 +17,8 @@
 		//типы файлов по умолчанию
 		extensions: ['.json', '.js', '.jsx'],
 		alias: {
-			'@': path.resolve(__dirname, 'src'),
+			'components': path.resolve(__dirname, 'src', 'components'),
+			'containers': path.resolve(__dirname, 'src', 'containers')
 		}
 	},
 	devServer: {
