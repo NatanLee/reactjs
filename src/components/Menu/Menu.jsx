@@ -1,21 +1,19 @@
 import './Menu.css';
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom'; 
 
 //import ReactDom from 'react-dom';
 
 //statefull предпологается поведение элемента
 export default class Menu extends Component{
 	render(){
-		const {title, items} = this.props;
+		const {title, items, activePath, onChange} = this.props;
 		return(
 			<Fragment>
 				<h3>{title}</h3>
 				<ul className = "menu">
-					{items.map(((item, idx) => <li key = {idx}><a href = "{item.href}">{item.title}</a></li>))}					
-					<li><a href = "/">Home</a></li>
-					<li><a href = "/news">News</a></li>
-					<li><a href = "/blog">Blog</a></li>				
+					{items.map(((item, idx) => <li className={activePath === item.href ? 'active' : ''} key = {idx}><a data-href={item.href} href = {item.href} onClick={onChange}>{item.title}</a></li>))}					
 				</ul>
 			</Fragment>
 		)

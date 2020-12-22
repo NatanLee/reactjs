@@ -3,3 +3,7 @@
 	font-color: red;
 	font-weight: bold;
 }
+
+.menu .active{
+	background-color: blueviolet;	
+}

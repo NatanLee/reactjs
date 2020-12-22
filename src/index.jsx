@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDom from 'react-dom';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
 //прямой импорт
 import Menu from 'components/Menu/Menu.jsx';
 import Container from './components/Container/Container.jsx';
@@ -13,14 +14,14 @@ import CommentsContainer from 'containers/CommentsContainer.jsx';
 
 const items = [
 	{href: '/', title: 'Home'},
-	{href: '/news', title: 'News'},
-	{href: '/blog', title: 'Blog'},
+	{href: '/comments', title: 'Comments'},
+	
 ]
 
 const items1 = [
 	{href: '/', title: 'Home1'},
-	{href: '/news', title: 'News1'},
-	{href: '/blog', title: 'Blog1'},
+	{href: '/news1', title: 'News1'},
+	{href: '/blog1', title: 'Blog1'},
 ]
 
 class App extends Component{
@@ -29,7 +30,8 @@ class App extends Component{
 		
 		this.state = {
 			comments: [],
-			isModal: false
+			isModal: false,
+			activePath: '/'
 		}		
 	}
 	
@@ -43,18 +45,29 @@ class App extends Component{
 	hundleOpen = () => {
 		this.setState({isModal: !this.state.isModal});		
 	}
-		
+	
+	handleActiveMenuChange = (e) => {
+		this.setState({
+			activePath: e.target.dataset.href
+		});
+		e.preventDefault();
+	}
+
 	render(){
-		const {comments, isModal} = this.state;
+		const {comments, isModal, activePath} = this.state;
 //		console.log(comments);
 		
 		return(
 			<div className = "box">
 				<Container>
-					<Menu items = {items} title = "Main menu" />
-					<Menu items = {items1} title = "Another menu" />
+					<Menu items = {items} title = "Main menu" activePath = {activePath} onChange={this.handleActiveMenuChange}/>
+					<Switch>
+						<Route path="/" exact component={Counter} />
+						<Route path="/comments" exact component={CommentsContainer} />
+					</Switch>
+					<Menu items = {items1} title = "Another menu" activePath = {activePath} />
 					Hello world!
-					<Menu items = {items1} title = "hi hi" />
+					<Menu items = {items1} title = "hi hi" activePath = {activePath} />
 					<List items = {['MongoDB', 'MiSQL', 'RethinkDB']} />
 					<Counter /><br/>
 					<ul>
@@ -72,4 +85,6 @@ class App extends Component{
 	}	
 }
 
-ReactDom.render(<App />, document.getElementById('root'))
+ReactDom.render(
+	<BrowserRouter><App /></BrowserRouter>,
+	document.getElementById('root'))
