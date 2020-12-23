@@ -12,6 +12,8 @@ import CommentForm from 'components/CommentForm/CommentForm.jsx';
 import Timer from 'components/Timer/Timer.jsx';
 import CommentsContainer from 'containers/CommentsContainer.jsx';
 
+import routes from './routes';
+
 const items = [
 	{href: '/', title: 'Home'},
 	{href: '/comments', title: 'Comments'},
@@ -62,8 +64,10 @@ class App extends Component{
 				<Container>
 					<Menu items = {items} title = "Main menu" activePath = {activePath} onChange={this.handleActiveMenuChange}/>
 					<Switch>
-						<Route path="/" exact component={Counter} />
-						<Route path="/comments" exact component={CommentsContainer} />
+						
+						{routes.map((route, idx) => <Route key={idx} {...route} />)}
+						/*<Route path="/" exact component={Counter} />
+						<Route path="/comments" exact component={CommentsContainer} />*/
 					</Switch>
 					<Menu items = {items1} title = "Another menu" activePath = {activePath} />
 					Hello world!

@@ -57,6 +57,9 @@
 			}
 		]
 	},
+	devServer: {
+		historyApiFallback: true,
+	},
 	plugins: [
 		//new ExtractTextPlugin('style.css'),
 		new MiniCssExtractPlugin({
