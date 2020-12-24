@@ -1,4 +1,5 @@
 import React, {Component, Fragment} from 'react';
+import {connect} from 'react-redux';
 
 //import CommentList from 'components/CommentsList';
 import CommentsList from '../components/CommentsList/CommentsList';
